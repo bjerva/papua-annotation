@@ -1,0 +1,24 @@
+<a href="http://tsplex.ling.su.se:8000/papua_dictionary/">Index</a>
+
+<form action="/papua_dictionary/search_helper/" method="post">
+{% csrf_token %}
+<input type="text" name="search" id="search" />
+<input type="submit" value="Search" />
+</form>
+
+<form action="/papua_dictionary/add_new/" method="post">
+{% csrf_token %}
+<input type="text" name="add_new" id="add_new" />
+<input type="submit" value="Add word" />
+</form>
+
+<h2>Latest entries:</h2>
+{% if latest_entry_list %}
+    <ul>
+    {% for entry in latest_entry_list %}
+        <li><a href="/papua_dictionary/{{ entry.id }}/">{{ entry.english_word }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No entries are available.</p>
+{% endif %}

@@ -1,0 +1,23 @@
+
+<h1>Search results for: {{ string }}</h1>
+
+<ul>
+<table>
+<colgroup>
+  <col span="10">
+</colgroup>
+<tr>
+<th>English</th>
+<th>Translations</th>
+{% for entry in search_entry_list %}
+    <tr>
+    <th><a href="/papua_dictionary/{{ entry.id }}/">{{ entry.english_word }}</a></th>
+    <td>
+    {% for translation in entry.translation_set.all %}
+       {{ translation.foreign_word }}, 
+    {% endfor %}
+    </td>    
+    </tr>
+{% endfor %}
+</table>
+</ul>

@@ -1,0 +1,16 @@
+<a href="http://tsplex.ling.su.se:8000/papua_dictionary/">Index</a>
+<h1>Translations of: {{ entry.english_word }}</h1>
+
+<form action="/papua_dictionary/{{ entry.id }}/add/" method="post">
+{% csrf_token %}
+{% if not entry.translation_set.all %}
+No translations exists. Please add one.
+{% endif %}
+<ul>
+{% for translation in entry.translation_set.all %}
+    <li> {{ translation.foreign_word }}</li>
+{% endfor %}
+</ul>
+<input type="text" name="translation" id="translation" />
+<input type="submit" value="Submit translation" />
+</form>
